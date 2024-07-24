@@ -7,6 +7,7 @@ extends PanelContainer
 
 @export var auto_show:bool = true
 @export var animate:bool = true
+@export var only_capslock: bool = true
 
 @export_file var custom_layout_file
 @export var set_tool_tip := true
@@ -102,7 +103,7 @@ var hide_position = Vector2()
 
 func _init_keyboard():
 	if custom_layout_file == null:
-		var default_layout = preload("default_layout.gd").new()
+		var default_layout = preload("res://addons/onscreenkeyboard/default_layout.gd").new()
 		_create_keyboard(default_layout.data)
 	else:
 		_create_keyboard(_load_json(custom_layout_file))
@@ -281,8 +282,8 @@ func _key_released(key_data):
 		input_event_key.pressed = true
 
 		var key = KeyListHandler.get_key_from_string(key_value)
-		if !uppercase && KeyListHandler.has_lowercase(key_value):
-			key +=32
+		# if !uppercase && KeyListHandler.has_lowercase(key_value):
+		# 	key +=32
 
 		input_event_key.keycode = key
 		input_event_key.unicode = key
@@ -309,15 +310,15 @@ func _create_keyboard(layout_data):
 		print("ERROR. No layout file found")
 		return
 
-	KeyListHandler = preload("keylist.gd").new()
-	KeyboardButton = preload("keyboard_button.gd")
+	KeyListHandler = preload("res://addons/onscreenkeyboard/keylist.gd").new()
+	KeyboardButton = preload("res://addons/onscreenkeyboard/keyboard_button.gd")
 
-	var ICON_DELETE = preload("icons/delete.png")
-	var ICON_SHIFT = preload("icons/shift.png")
-	var ICON_LEFT = preload("icons/left.png")
-	var ICON_RIGHT = preload("icons/right.png")
-	var ICON_HIDE = preload("icons/hide.png")
-	var ICON_ENTER = preload("icons/enter.png")
+	var ICON_DELETE = preload("res://addons/onscreenkeyboard/icons/delete.png")
+	var ICON_SHIFT = preload("res://addons/onscreenkeyboard/icons/shift.png")
+	var ICON_LEFT = preload("res://addons/onscreenkeyboard/icons/left.png")
+	var ICON_RIGHT = preload("res://addons/onscreenkeyboard/icons/right.png")
+	var ICON_HIDE = preload("res://addons/onscreenkeyboard/icons/hide.png")
+	var ICON_ENTER = preload("res://addons/onscreenkeyboard/icons/enter.png")
 
 	var data = layout_data
 
