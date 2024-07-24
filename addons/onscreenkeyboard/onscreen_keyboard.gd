@@ -123,10 +123,10 @@ func _init_keyboard():
 
 var focus_object = null
 
-func show():
+func do_show():
 	_show_keyboard()
 
-func hide():
+func do_hide():
 	_hide_keyboard()
 
 var released = true
